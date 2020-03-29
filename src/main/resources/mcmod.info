@@ -1,0 +1,16 @@
+[
+{
+  "modid": "modernfurniture",
+  "name": "Modern Furniture",
+  "description": "Description Here",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Witherking25", "HarryP2006"],
+  "credits": "Development: Witherking25; Modeling and Textures: HarryP2006",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
