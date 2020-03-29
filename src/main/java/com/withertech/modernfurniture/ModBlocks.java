@@ -1,5 +1,7 @@
 package com.withertech.modernfurniture;
 
+import com.withertech.modernfurniture.blocks.BlockCouchTableEnd;
+import com.withertech.modernfurniture.blocks.BlockCouchTableMiddle;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteCorner;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndLeft;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndRight;
@@ -40,6 +42,12 @@ public class ModBlocks
 	@GameRegistry.ObjectHolder("modernfurniture:blocklcouchwhiteextension")
 	public static BlockLCouchWhiteExtension blockLCouchWhiteExtension;
 	
+	@GameRegistry.ObjectHolder("modernfurniture:blockcouchtableend")
+	public static BlockCouchTableEnd blockCouchTableEnd;
+	
+	@GameRegistry.ObjectHolder("modernfurniture:blockcouchtablemiddle")
+	public static BlockCouchTableMiddle blockCouchTableMiddle;
+	
 	@SideOnly(Side.CLIENT)
 	public static void initModels() 
 	{
@@ -52,5 +60,8 @@ public class ModBlocks
 		blockLCouchWhiteMiddle.initModel();
 		blockLCouchWhiteCorner.initModel();
 		blockLCouchWhiteExtension.initModel();
+		
+		blockCouchTableEnd.initModel();
+		blockCouchTableMiddle.initModel();
 	}
 }

@@ -1,6 +1,8 @@
 package com.withertech.modernfurniture.proxy;
 
 import com.withertech.modernfurniture.ModBlocks;
+import com.withertech.modernfurniture.blocks.BlockCouchTableEnd;
+import com.withertech.modernfurniture.blocks.BlockCouchTableMiddle;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteCorner;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndLeft;
 import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndRight;
@@ -42,6 +44,9 @@ public class CommonProxy {
         event.getRegistry().register(new BlockLCouchWhiteMiddle());
         event.getRegistry().register(new BlockLCouchWhiteCorner());
         event.getRegistry().register(new BlockLCouchWhiteExtension());
+        
+        event.getRegistry().register(new BlockCouchTableEnd());
+        event.getRegistry().register(new BlockCouchTableMiddle());
     }
 
     @SubscribeEvent
@@ -55,5 +60,8 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteMiddle).setRegistryName(ModBlocks.blockLCouchWhiteMiddle.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteCorner).setRegistryName(ModBlocks.blockLCouchWhiteCorner.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteExtension).setRegistryName(ModBlocks.blockLCouchWhiteExtension.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockCouchTableEnd).setRegistryName(ModBlocks.blockCouchTableEnd.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockCouchTableMiddle).setRegistryName(ModBlocks.blockCouchTableMiddle.getRegistryName()));
     }
 }
