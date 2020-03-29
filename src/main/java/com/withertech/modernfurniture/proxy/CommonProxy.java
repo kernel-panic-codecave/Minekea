@@ -1,6 +1,11 @@
 package com.withertech.modernfurniture.proxy;
 
 import com.withertech.modernfurniture.ModBlocks;
+import com.withertech.modernfurniture.blocks.BlockLCouchWhiteCorner;
+import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndLeft;
+import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndRight;
+import com.withertech.modernfurniture.blocks.BlockLCouchWhiteExtension;
+import com.withertech.modernfurniture.blocks.BlockLCouchWhiteMiddle;
 import com.withertech.modernfurniture.blocks.BlockTVStandEndLeft;
 import com.withertech.modernfurniture.blocks.BlockTVStandEndRight;
 import com.withertech.modernfurniture.blocks.BlockTVStandMiddle;
@@ -31,6 +36,12 @@ public class CommonProxy {
         event.getRegistry().register(new BlockTVStandEndLeft());
         event.getRegistry().register(new BlockTVStandEndRight());
         event.getRegistry().register(new BlockTVStandMiddle());
+        
+        event.getRegistry().register(new BlockLCouchWhiteEndLeft());
+        event.getRegistry().register(new BlockLCouchWhiteEndRight());
+        event.getRegistry().register(new BlockLCouchWhiteMiddle());
+        event.getRegistry().register(new BlockLCouchWhiteCorner());
+        event.getRegistry().register(new BlockLCouchWhiteExtension());
     }
 
     @SubscribeEvent
@@ -38,5 +49,11 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(ModBlocks.blockTVStandEndLeft).setRegistryName(ModBlocks.blockTVStandEndLeft.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockTVStandEndRight).setRegistryName(ModBlocks.blockTVStandEndRight.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockTVStandMiddle).setRegistryName(ModBlocks.blockTVStandMiddle.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteEndLeft).setRegistryName(ModBlocks.blockLCouchWhiteEndLeft.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteEndRight).setRegistryName(ModBlocks.blockLCouchWhiteEndRight.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteMiddle).setRegistryName(ModBlocks.blockLCouchWhiteMiddle.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteCorner).setRegistryName(ModBlocks.blockLCouchWhiteCorner.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockLCouchWhiteExtension).setRegistryName(ModBlocks.blockLCouchWhiteExtension.getRegistryName()));
     }
 }
