@@ -1,6 +1,6 @@
-package com.withertech.modernfurniture.blocks;
+package com.withertech.minekea.blocks;
 
-import com.withertech.modernfurniture.ModernFurniture;
+import com.withertech.minekea.Minekea;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,15 +19,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTVStandMiddle extends Block 
+public class BlockCouchTableEnd extends Block 
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	
-	public BlockTVStandMiddle()
+	public BlockCouchTableEnd()
 	{
-		super(Material.ROCK);
-		setUnlocalizedName(ModernFurniture.MODID + ".blocktvstandmiddle");
-		setRegistryName("blocktvstandmiddle");
+		super(Material.CLOTH);
+		setUnlocalizedName(Minekea.MODID + ".blockcouchtableend");
+		setRegistryName("blockcouchtableend");
 		
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}

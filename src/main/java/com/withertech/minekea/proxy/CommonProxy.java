@@ -1,16 +1,16 @@
-package com.withertech.modernfurniture.proxy;
+package com.withertech.minekea.proxy;
 
-import com.withertech.modernfurniture.ModBlocks;
-import com.withertech.modernfurniture.blocks.BlockCouchTableEnd;
-import com.withertech.modernfurniture.blocks.BlockCouchTableMiddle;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteCorner;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndLeft;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndRight;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteExtension;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteMiddle;
-import com.withertech.modernfurniture.blocks.BlockTVStandEndLeft;
-import com.withertech.modernfurniture.blocks.BlockTVStandEndRight;
-import com.withertech.modernfurniture.blocks.BlockTVStandMiddle;
+import com.withertech.minekea.ModBlocks;
+import com.withertech.minekea.blocks.BlockCouchTableEnd;
+import com.withertech.minekea.blocks.BlockCouchTableMiddle;
+import com.withertech.minekea.blocks.BlockLCouchWhiteCorner;
+import com.withertech.minekea.blocks.BlockLCouchWhiteEndLeft;
+import com.withertech.minekea.blocks.BlockLCouchWhiteEndRight;
+import com.withertech.minekea.blocks.BlockLCouchWhiteExtension;
+import com.withertech.minekea.blocks.BlockLCouchWhiteMiddle;
+import com.withertech.minekea.blocks.BlockTVStandEndLeft;
+import com.withertech.minekea.blocks.BlockTVStandEndRight;
+import com.withertech.minekea.blocks.BlockTVStandMiddle;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

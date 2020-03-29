@@ -1,8 +1,8 @@
 [
 {
-  "modid": "modernfurniture",
-  "name": "Modern Furniture",
-  "description": "Description Here",
+  "modid": "minekea",
+  "name": "Minekea",
+  "description": "Build together modern furniture along with other models such as food, plants, lights, and more!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

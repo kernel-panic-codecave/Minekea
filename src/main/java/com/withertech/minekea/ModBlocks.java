@@ -1,15 +1,15 @@
-package com.withertech.modernfurniture;
+package com.withertech.minekea;
 
-import com.withertech.modernfurniture.blocks.BlockCouchTableEnd;
-import com.withertech.modernfurniture.blocks.BlockCouchTableMiddle;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteCorner;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndLeft;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteEndRight;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteExtension;
-import com.withertech.modernfurniture.blocks.BlockLCouchWhiteMiddle;
-import com.withertech.modernfurniture.blocks.BlockTVStandEndLeft;
-import com.withertech.modernfurniture.blocks.BlockTVStandEndRight;
-import com.withertech.modernfurniture.blocks.BlockTVStandMiddle;
+import com.withertech.minekea.blocks.BlockCouchTableEnd;
+import com.withertech.minekea.blocks.BlockCouchTableMiddle;
+import com.withertech.minekea.blocks.BlockLCouchWhiteCorner;
+import com.withertech.minekea.blocks.BlockLCouchWhiteEndLeft;
+import com.withertech.minekea.blocks.BlockLCouchWhiteEndRight;
+import com.withertech.minekea.blocks.BlockLCouchWhiteExtension;
+import com.withertech.minekea.blocks.BlockLCouchWhiteMiddle;
+import com.withertech.minekea.blocks.BlockTVStandEndLeft;
+import com.withertech.minekea.blocks.BlockTVStandEndRight;
+import com.withertech.minekea.blocks.BlockTVStandMiddle;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;

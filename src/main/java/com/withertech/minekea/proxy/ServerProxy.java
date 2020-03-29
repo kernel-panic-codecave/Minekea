@@ -1,4 +1,4 @@
-package com.withertech.modernfurniture.proxy;
+package com.withertech.minekea.proxy;
 
 public class ServerProxy extends CommonProxy {
 

@@ -1,7 +1,7 @@
-package com.withertech.modernfurniture.proxy;
+package com.withertech.minekea.proxy;
 
-import com.withertech.modernfurniture.ModBlocks;
-import com.withertech.modernfurniture.ModernFurniture;
+import com.withertech.minekea.ModBlocks;
+import com.withertech.minekea.Minekea;
 
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.obj.OBJLoader;
