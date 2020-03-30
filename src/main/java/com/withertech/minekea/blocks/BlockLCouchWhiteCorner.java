@@ -1,6 +1,7 @@
 package com.withertech.minekea.blocks;
 
 import com.withertech.minekea.Minekea;
+import com.withertech.minekea.proxy.CommonProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,7 +29,7 @@ public class BlockLCouchWhiteCorner extends Block
 		super(Material.CLOTH);
 		setUnlocalizedName(Minekea.MODID + ".blocklcouchwhitecorner");
 		setRegistryName("blocklcouchwhitecorner");
-		
+		this.setCreativeTab(CommonProxy.MinekeaTab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
     @SideOnly(Side.CLIENT)

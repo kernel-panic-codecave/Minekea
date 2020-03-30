@@ -18,7 +18,7 @@ public class Minekea
     public static final String MODID = "minekea";
     public static final String VERSION = "1.0";
     
-    @SidedProxy(clientSide = "com.withertech.modernfurniture.proxy.ClientProxy", serverSide = "com.withertech.modernfurniture.proxy.ServerProxy")
+    @SidedProxy(clientSide = "com.withertech.minekea.proxy.ClientProxy", serverSide = "com.withertech.minekea.proxy.ServerProxy")
     public static CommonProxy proxy;
     
     @Mod.Instance

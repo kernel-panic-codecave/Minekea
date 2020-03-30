@@ -1,6 +1,7 @@
 package com.withertech.minekea.blocks;
 
 import com.withertech.minekea.Minekea;
+import com.withertech.minekea.proxy.CommonProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,7 +29,7 @@ public class BlockTVStandEndLeft extends Block
 		super(Material.ROCK);
 		setUnlocalizedName(Minekea.MODID + ".blocktvstandendleft");
 		setRegistryName("blocktvstandendleft");
-		
+		this.setCreativeTab(CommonProxy.MinekeaTab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
     @SideOnly(Side.CLIENT)
