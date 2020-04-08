@@ -2,9 +2,11 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
+		"3": "minekea:blocks/blockkitchencounterstoveknobside",
 		"6": "minekea:blocks/blockkitchencounterstovesides",
 		"7": "minekea:blocks/blockkitchencounterstovetop",
-		"8": "minekea:blocks/blockkitchencounterstoveknob"
+		"8": "minekea:blocks/blockkitchencounterstoveknob",
+		"particle": "minekea:blocks/blockkitchencounterstoveknobside"
 	},
 	"elements": [
 		{
@@ -26,11 +28,11 @@
 			"to": [11, 0, 0],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#8"},
-				"east": {"uv": [16, 16, 16, 16], "texture": "#8"},
-				"south": {"uv": [9, 16, 11, 16], "texture": "#8"},
-				"west": {"uv": [0, 16, 0, 16], "texture": "#8"},
-				"up": {"uv": [9, 0, 11, 0], "texture": "#8"},
-				"down": {"uv": [9, 16, 11, 16], "texture": "#8"}
+				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#8"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
 			}
 		},
 		{
@@ -39,11 +41,11 @@
 			"to": [7, 0, 0],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#8"},
-				"east": {"uv": [16, 16, 16, 16], "texture": "#8"},
-				"south": {"uv": [5, 16, 7, 16], "texture": "#8"},
-				"west": {"uv": [0, 16, 0, 16], "texture": "#8"},
-				"up": {"uv": [5, 0, 7, 0], "texture": "#8"},
-				"down": {"uv": [5, 16, 7, 16], "texture": "#8"}
+				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#8"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
 			}
 		}
 	],

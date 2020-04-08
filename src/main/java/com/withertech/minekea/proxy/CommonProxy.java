@@ -134,6 +134,7 @@ public class CommonProxy {
         event.getRegistry().register(new BlockKitchenCounterSinkFaucet());
         event.getRegistry().register(new BlockKitchenCounterOven());
         GameRegistry.registerTileEntity(TileKitchenCounterOven.class, Minekea.MODID + "_kitchencounteroven");
+        event.getRegistry().register(new BlockKitchenCounterStove());
 
         event.getRegistry().register(new BlockKitchenWallOven());
         GameRegistry.registerTileEntity(TileKitchenWallOven.class, Minekea.MODID + "_kitchenwalloven");
@@ -188,7 +189,8 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterSink).setRegistryName(ModBlocks.blockKitchenCounterSink.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterSinkFaucet).setRegistryName(ModBlocks.blockKitchenCounterSinkFaucet.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterOven).setRegistryName(ModBlocks.blockKitchenCounterOven.getRegistryName()));
-
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterStove).setRegistryName(ModBlocks.blockKitchenCounterStove.getRegistryName()));
+        
         event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenWallOven).setRegistryName(ModBlocks.blockKitchenWallOven.getRegistryName()));
 
         event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenChair).setRegistryName(ModBlocks.blockKitchenChair.getRegistryName()));
