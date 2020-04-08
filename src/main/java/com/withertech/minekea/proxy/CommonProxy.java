@@ -1,49 +1,70 @@
 package com.withertech.minekea.proxy;
 
+import javax.annotation.Nullable;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.withertech.minekea.Minekea;
 import com.withertech.minekea.ModBlocks;
-import com.withertech.minekea.blocks.BlockCouchTableEnd;
-import com.withertech.minekea.blocks.BlockCouchTableMiddle;
-import com.withertech.minekea.blocks.BlockLCouchWhiteCorner;
-import com.withertech.minekea.blocks.BlockLCouchWhiteEndLeft;
-import com.withertech.minekea.blocks.BlockLCouchWhiteEndRight;
-import com.withertech.minekea.blocks.BlockLCouchWhiteExtension;
-import com.withertech.minekea.blocks.BlockLCouchWhiteMiddle;
-import com.withertech.minekea.blocks.BlockSideTable;
-import com.withertech.minekea.blocks.BlockTVStandEndLeft;
-import com.withertech.minekea.blocks.BlockTVStandEndRight;
-import com.withertech.minekea.blocks.BlockTVStandMiddle;
-import com.withertech.minekea.blocks.BlockTVWallBottomLeft;
-import com.withertech.minekea.blocks.BlockTVWallBottomMiddle;
-import com.withertech.minekea.blocks.BlockTVWallBottomRight;
-import com.withertech.minekea.blocks.BlockTVWallTopLeft;
-import com.withertech.minekea.blocks.BlockTVWallTopMiddle;
-import com.withertech.minekea.blocks.BlockTVWallTopRight;
+import com.withertech.minekea.blocks.*;
+import com.withertech.minekea.handler.GuiHandler;
+import com.withertech.minekea.network.Messages;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.animation.ITimeValue;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
-	public static CreativeTabs MinekeaTab;               // will hold our first custom creative tab
+	public static CreativeTabs MinekeaMainTab;
+	public static CreativeTabs MinekeaDenTab;
+	public static CreativeTabs MinekeaKitchenTab;
     public void preInit(FMLPreInitializationEvent e) 
     {
-        MinekeaTab = new CreativeTabs("minekeatab") {
+        Messages.registerMessages("minekea");
+        MinekeaMainTab = new CreativeTabs("minekeamaintab") 
+        {
             @Override
             @SideOnly(Side.CLIENT)
-            public ItemStack getTabIconItem() {
+            public ItemStack getTabIconItem() 
+            {
+              return new ItemStack(Blocks.CONCRETE);
+            }
+          };
+        MinekeaDenTab = new CreativeTabs("minekeadentab") 
+        {
+            @Override
+            @SideOnly(Side.CLIENT)
+            public ItemStack getTabIconItem() 
+            {
+              return new ItemStack(Blocks.CONCRETE);
+            }
+          };
+        MinekeaKitchenTab = new CreativeTabs("minekeakitchentab") 
+        {
+            @Override
+            @SideOnly(Side.CLIENT)
+            public ItemStack getTabIconItem() 
+            {
               return new ItemStack(Blocks.CONCRETE);
             }
           };
@@ -51,14 +72,18 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent e) 
     {
-    	
+        NetworkRegistry.INSTANCE.registerGuiHandler(Minekea.instance, new GuiHandler());
     }
 
     public void postInit(FMLPostInitializationEvent e) 
     {
     	
     }
-
+    @Nullable
+    public IAnimationStateMachine load(ResourceLocation location, ImmutableMap<String, ITimeValue> parameters) 
+    {
+        return null;
+    }
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) 
     {
@@ -83,6 +108,37 @@ public class CommonProxy {
         event.getRegistry().register(new BlockTVWallBottomRight());
         
         event.getRegistry().register(new BlockSideTable());
+        
+        event.getRegistry().register(new BlockFurnitureStation());
+        
+        event.getRegistry().register(new BlockTableLamp(false).setRegistryName("blocktablelamp").setCreativeTab(CommonProxy.MinekeaDenTab));
+        event.getRegistry().register(new BlockTableLamp(true).setRegistryName("blocktablelamp_on"));
+        
+        event.getRegistry().register(new BlockTallLampLight(false).setRegistryName("blocktalllamplight").setCreativeTab(CommonProxy.MinekeaDenTab));
+        event.getRegistry().register(new BlockTallLampLight(true).setRegistryName("blocktalllamplight_on"));
+        event.getRegistry().register(new BlockTallLampBase());
+        
+        event.getRegistry().register(new BlockArmchairWhite());
+        
+        event.getRegistry().register(new BlockKitchenTableSingle());
+        
+        event.getRegistry().register(new BlockKitchenTableTileableLeft());
+        event.getRegistry().register(new BlockKitchenTableTileableRight());
+        
+        event.getRegistry().register(new BlockKitchenCounterStraight());
+        event.getRegistry().register(new BlockKitchenCounterCornerInner());
+        event.getRegistry().register(new BlockKitchenCounterCornerOuter());
+        event.getRegistry().register(new BlockKitchenCounterEndLeft());
+        event.getRegistry().register(new BlockKitchenCounterEndRight());
+        event.getRegistry().register(new BlockKitchenCounterSink());
+        event.getRegistry().register(new BlockKitchenCounterSinkFaucet());
+        event.getRegistry().register(new BlockKitchenCounterOven());
+        GameRegistry.registerTileEntity(TileKitchenCounterOven.class, Minekea.MODID + "_kitchencounteroven");
+
+        event.getRegistry().register(new BlockKitchenWallOven());
+        GameRegistry.registerTileEntity(TileKitchenWallOven.class, Minekea.MODID + "_kitchenwalloven");
+        
+        event.getRegistry().register(new BlockKitchenChair());
     }
 
     @SubscribeEvent
@@ -109,5 +165,39 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(ModBlocks.blockTVWallBottomRight).setRegistryName(ModBlocks.blockTVWallBottomRight.getRegistryName()));
         
         event.getRegistry().register(new ItemBlock(ModBlocks.blockSideTable).setRegistryName(ModBlocks.blockSideTable.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockFurnitureStation).setRegistryName(ModBlocks.blockFurnitureStation.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockTableLamp).setRegistryName(ModBlocks.blockTableLamp.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockTallLampLight).setRegistryName(ModBlocks.blockTallLampLight.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockTallLampBase).setRegistryName(ModBlocks.blockTallLampBase.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockArmchairWhite).setRegistryName(ModBlocks.blockArmchairWhite.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenTableSingle).setRegistryName(ModBlocks.blockKitchenTableSingle.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenTableTileableLeft).setRegistryName(ModBlocks.blockKitchenTableTileableLeft.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenTableTileableRight).setRegistryName(ModBlocks.blockKitchenTableTileableRight.getRegistryName()));
+        
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterStraight).setRegistryName(ModBlocks.blockKitchenCounterStraight.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterCornerInner).setRegistryName(ModBlocks.blockKitchenCounterCornerInner.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterCornerOuter).setRegistryName(ModBlocks.blockKitchenCounterCornerOuter.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterEndLeft).setRegistryName(ModBlocks.blockKitchenCounterEndLeft.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterEndRight).setRegistryName(ModBlocks.blockKitchenCounterEndRight.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterSink).setRegistryName(ModBlocks.blockKitchenCounterSink.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterSinkFaucet).setRegistryName(ModBlocks.blockKitchenCounterSinkFaucet.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenCounterOven).setRegistryName(ModBlocks.blockKitchenCounterOven.getRegistryName()));
+
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenWallOven).setRegistryName(ModBlocks.blockKitchenWallOven.getRegistryName()));
+
+        event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenChair).setRegistryName(ModBlocks.blockKitchenChair.getRegistryName()));
+    }
+    public ListenableFuture<Object> addScheduledTaskClient(Runnable runnableToSchedule) {
+        throw new IllegalStateException("This should only be called from client side");
+    }
+
+    public EntityPlayer getClientPlayer() {
+        throw new IllegalStateException("This should only be called from client side");
     }
 }

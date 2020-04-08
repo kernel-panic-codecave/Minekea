@@ -1,0 +1,90 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "minekea:blocks/blockkitchencounterstraighttop",
+		"1": "minekea:blocks/blockkitchencounterstraightcabinet",
+		"2": "minekea:blocks/blockkitchencounterstraighthandle",
+		"3": "minekea:blocks/blockkitchencounterstraightcabinetfront",
+		"particle": "minekea:blocks/blockkitchencounterstraightcabinet"
+	},
+	"elements": [
+		{
+			"name": "cabinet",
+			"from": [0, 0, 1],
+			"to": [16, 14, 16],
+			"faces": {
+				"north": {"uv": [0, 2, 16, 16], "texture": "#3"},
+				"east": {"uv": [0, 2, 15, 16], "texture": "#1"},
+				"south": {"uv": [0, 2, 16, 16], "texture": "#1"},
+				"west": {"uv": [1, 2, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 1, 16, 16], "texture": "#missing"},
+				"down": {"uv": [0, 0, 16, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "countertop",
+			"from": [0, 14, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "drawer",
+			"from": [5, 11, 0],
+			"to": [11, 12, 1],
+			"faces": {
+				"north": {"uv": [5, 4, 11, 5], "texture": "#2"},
+				"east": {"uv": [15, 4, 16, 5], "texture": "#2"},
+				"south": {"uv": [5, 4, 11, 5], "texture": "#missing"},
+				"west": {"uv": [0, 4, 1, 5], "texture": "#2"},
+				"up": {"uv": [5, 0, 11, 1], "texture": "#2"},
+				"down": {"uv": [5, 15, 11, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cabinet 1",
+			"from": [5, 2, 0],
+			"to": [6, 6, 1],
+			"faces": {
+				"north": {"uv": [10, 10, 11, 14], "texture": "#2"},
+				"east": {"uv": [15, 10, 16, 14], "texture": "#2"},
+				"south": {"uv": [5, 10, 6, 14], "texture": "#missing"},
+				"west": {"uv": [0, 10, 1, 14], "texture": "#2"},
+				"up": {"uv": [5, 0, 6, 1], "texture": "#2"},
+				"down": {"uv": [5, 15, 6, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cabinet 2",
+			"from": [10, 2, 0],
+			"to": [11, 6, 1],
+			"faces": {
+				"north": {"uv": [5, 10, 6, 14], "texture": "#2"},
+				"east": {"uv": [15, 10, 16, 14], "texture": "#2"},
+				"south": {"uv": [10, 10, 11, 14], "texture": "#missing"},
+				"west": {"uv": [0, 10, 1, 14], "texture": "#2"},
+				"up": {"uv": [10, 0, 11, 1], "texture": "#2"},
+				"down": {"uv": [10, 15, 11, 16], "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "body",
+			"origin": [8, 8, 8],
+			"children": [0, 1]
+		},
+		{
+			"name": "handles",
+			"origin": [8, 8, 8],
+			"children": [2, 3, 4]
+		}
+	]
+}

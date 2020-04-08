@@ -5,6 +5,7 @@ import com.withertech.minekea.proxy.CommonProxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLever;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -33,10 +34,12 @@ public class BlockTVWallBottomMiddle extends Block
 	
 	public BlockTVWallBottomMiddle()
 	{
-		super(Material.ROCK);
-		setUnlocalizedName(Minekea.MODID + ".blocktvwallbottommiddle");
+		super(Material.IRON);
+		setSoundType(SoundType.METAL);
+		setHardness(5.0F);
+		setResistance(10.0F);		setUnlocalizedName(Minekea.MODID + ".blocktvwallbottommiddle");
 		setRegistryName("blocktvwallbottommiddle");
-		this.setCreativeTab(CommonProxy.MinekeaTab);
+		this.setCreativeTab(CommonProxy.MinekeaDenTab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
     @SideOnly(Side.CLIENT)
@@ -83,15 +86,9 @@ public class BlockTVWallBottomMiddle extends Block
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        world.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(pos, placer)), 2);
-    }
-
-    public static EnumFacing getFacingFromEntity(BlockPos clickedBlock, EntityLivingBase entity) {
-        return EnumFacing.getFacingFromVector(
-            (float) (entity.posX - clickedBlock.getX()),
-            (float) (entity.posY - clickedBlock.getY()),
-            (float) (entity.posZ - clickedBlock.getZ()));
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
+    {
+        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
     @Override

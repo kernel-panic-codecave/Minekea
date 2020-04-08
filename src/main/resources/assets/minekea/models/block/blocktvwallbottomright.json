@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
+    "parent": "block/block",
 	"textures": {
-		"1": "minekea:blocks/blocktvwallbottomrightscreen",
+		"1": "#screen",
 		"2": "minekea:blocks/blocktvwallbottomrightrim",
 		"particle": "minekea:blocks/blocktvwallbottomrightrim"
 	},

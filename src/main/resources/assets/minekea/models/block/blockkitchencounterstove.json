@@ -1,0 +1,63 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"6": "minekea:blocks/blockkitchencounterstovesides",
+		"7": "minekea:blocks/blockkitchencounterstovetop",
+		"8": "minekea:blocks/blockkitchencounterstoveknob"
+	},
+	"elements": [
+		{
+			"name": "stove",
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#6"},
+				"east": {"uv": [0, 15, 16, 16], "texture": "#6"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#6"},
+				"west": {"uv": [0, 15, 16, 16], "texture": "#6"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#6"}
+			}
+		},
+		{
+			"name": "knob 1",
+			"from": [9, -2, -1],
+			"to": [11, 0, 0],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#8"},
+				"east": {"uv": [16, 16, 16, 16], "texture": "#8"},
+				"south": {"uv": [9, 16, 11, 16], "texture": "#8"},
+				"west": {"uv": [0, 16, 0, 16], "texture": "#8"},
+				"up": {"uv": [9, 0, 11, 0], "texture": "#8"},
+				"down": {"uv": [9, 16, 11, 16], "texture": "#8"}
+			}
+		},
+		{
+			"name": "knob 2",
+			"from": [5, -2, -1],
+			"to": [7, 0, 0],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#8"},
+				"east": {"uv": [16, 16, 16, 16], "texture": "#8"},
+				"south": {"uv": [5, 16, 7, 16], "texture": "#8"},
+				"west": {"uv": [0, 16, 0, 16], "texture": "#8"},
+				"up": {"uv": [5, 0, 7, 0], "texture": "#8"},
+				"down": {"uv": [5, 16, 7, 16], "texture": "#8"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "body",
+			"origin": [8, 8, 8],
+			"children": [0,
+				{
+					"name": "knobs",
+					"origin": [8, 8, 8],
+					"children": [1, 2]
+				}
+			]
+		}
+	]
+}

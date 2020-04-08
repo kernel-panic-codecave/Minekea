@@ -1,0 +1,24 @@
+{
+    "parameters": {
+        "cycle": ["/", 2.0]
+    },
+    "clips": {
+        "opening": ["apply", "minekea:block/blockkitchencounteroven@opening", "#cycle"],
+        "closing": ["apply", "minekea:block/blockkitchencounteroven@closing", "#cycle"],
+        "open": ["apply", "minekea:block/blockkitchencounteroven@open", "#cycle"],
+        "closed": ["apply", "minekea:block/blockkitchencounteroven@closed", "#cycle"]
+    },
+    "states": [
+        "opening",
+        "closing",
+        "open",
+        "closed"
+    ],
+    "transitions": {
+        "open": "closing",
+        "closing": "closed",
+        "closed": "opening",
+        "opening": "open"
+    },
+    "start_state": "closed"
+}

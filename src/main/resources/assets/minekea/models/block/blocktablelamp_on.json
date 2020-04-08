@@ -1,0 +1,121 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "minekea:blocks/blocktablelampbase",
+		"1": "minekea:blocks/blocktablelampbody",
+		"3": "minekea:blocks/blocktablelamplighton",
+		"4": "minekea:blocks/blocktablelampshade",
+		"particle": "minekea:blocks/blocktablelampbase"
+	},
+	"elements": [
+		{
+			"name": "beam 1",
+			"from": [5, 1, 7],
+			"to": [11, 2, 9],
+			"faces": {
+				"north": {"uv": [5, 14, 11, 15], "texture": "#1"},
+				"east": {"uv": [7, 14, 9, 15], "texture": "#1"},
+				"south": {"uv": [5, 14, 11, 15], "texture": "#1"},
+				"west": {"uv": [7, 14, 9, 15], "texture": "#1"},
+				"up": {"uv": [5, 7, 11, 9], "texture": "#1"},
+				"down": {"uv": [5, 7, 11, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "beam 2",
+			"from": [5, 2, 7],
+			"to": [6, 6, 9],
+			"faces": {
+				"north": {"uv": [10, 10, 11, 14], "texture": "#1"},
+				"east": {"uv": [7, 10, 9, 14], "texture": "#1"},
+				"south": {"uv": [5, 10, 6, 14], "texture": "#1"},
+				"west": {"uv": [7, 10, 9, 14], "texture": "#1"},
+				"up": {"uv": [5, 7, 6, 9], "texture": "#1"},
+				"down": {"uv": [5, 7, 6, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "beam 3",
+			"from": [10, 2, 7],
+			"to": [11, 15, 9],
+			"faces": {
+				"north": {"uv": [5, 1, 6, 14], "texture": "#1"},
+				"east": {"uv": [7, 1, 9, 14], "texture": "#1"},
+				"south": {"uv": [10, 1, 11, 14], "texture": "#1"},
+				"west": {"uv": [7, 1, 9, 14], "texture": "#1"},
+				"up": {"uv": [10, 7, 11, 9], "texture": "#1"},
+				"down": {"uv": [10, 7, 11, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "beam 4",
+			"from": [4, 15, 5],
+			"to": [12, 16, 11],
+			"faces": {
+				"north": {"uv": [4, 0, 12, 1], "texture": "#1"},
+				"east": {"uv": [5, 0, 11, 1], "texture": "#1"},
+				"south": {"uv": [4, 0, 12, 1], "texture": "#1"},
+				"west": {"uv": [5, 0, 11, 1], "texture": "#1"},
+				"up": {"uv": [4, 5, 12, 11], "texture": "#1"},
+				"down": {"uv": [4, 5, 12, 11], "texture": "#1"}
+			}
+		},
+		{
+			"name": "beam 5",
+			"from": [5, 12, 7],
+			"to": [6, 15, 9],
+			"faces": {
+				"north": {"uv": [10, 1, 11, 4], "texture": "#1"},
+				"east": {"uv": [7, 1, 9, 4], "texture": "#1"},
+				"south": {"uv": [5, 1, 6, 4], "texture": "#1"},
+				"west": {"uv": [7, 1, 9, 4], "texture": "#1"},
+				"up": {"uv": [5, 7, 6, 9], "texture": "#1"},
+				"down": {"uv": [5, 7, 6, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "lampshade",
+			"from": [3, 6, 5],
+			"to": [8, 12, 11],
+			"faces": {
+				"north": {"uv": [8, 4, 13, 10], "texture": "#4"},
+				"east": {"uv": [5, 4, 11, 10], "texture": "#4"},
+				"south": {"uv": [3, 4, 8, 10], "texture": "#4"},
+				"west": {"uv": [5, 4, 11, 10], "texture": "#4"},
+				"up": {"uv": [3, 5, 8, 11], "texture": "#4"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [4, 0, 4],
+			"to": [12, 1, 12],
+			"faces": {
+				"north": {"uv": [4, 15, 12, 16], "texture": "#0"},
+				"east": {"uv": [4, 15, 12, 16], "texture": "#0"},
+				"south": {"uv": [4, 15, 12, 16], "texture": "#0"},
+				"west": {"uv": [4, 15, 12, 16], "texture": "#0"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "body",
+			"origin": [8, 8, 8],
+			"children": [0, 1, 2, 3, 4]
+		},
+		{
+			"name": "light",
+			"origin": [8, 8, 8],
+			"children": [5]
+		},
+		{
+			"name": "base",
+			"origin": [8, 8, 8],
+			"children": [6]
+		}
+	]
+}

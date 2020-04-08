@@ -1,0 +1,108 @@
+{
+  "joints": {
+    "door": {"28": [1.0], "29": [1.0], "30": [1.0], "31": [1.0], "32": [1.0], "33": [1.0]}
+  },
+  "clips": {
+    "opening": {
+      "loop": false,
+      "joint_clips": {
+        "door": [
+          {
+            "variable": "axis_x",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 1 ]
+          },
+          {
+            "variable": "origin_z",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0 ]
+          },
+          {
+            "variable": "origin_y",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0.06 ]
+          },
+          {
+            "variable": "angle",
+            "type": "uniform",
+            "interpolation": "linear",
+            "samples": [0, -45, -90]
+          }
+        ]
+      },
+      "events": {"0.9": "!transition:open"}
+    },
+    "closing": {
+      "loop": false,
+      "joint_clips": {
+        "door": [
+          {
+            "variable": "axis_x",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 1 ]
+          },
+          {
+            "variable": "origin_z",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0 ]
+          },
+          {
+            "variable": "origin_y",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0.06 ]
+          },
+          {
+            "variable": "angle",
+            "type": "uniform",
+            "interpolation": "linear",
+            "samples": [-90, -45, 0]
+          }
+        ]
+      },
+      "events": {"0.9": "!transition:closed"}
+    },
+    "open": {
+      "loop": false,
+      "joint_clips": {
+        "door": [
+          {
+            "variable": "axis_x",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 1 ]
+          },
+          {
+            "variable": "origin_z",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0 ]
+          },
+          {
+            "variable": "origin_y",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [ 0.06 ]
+          },
+          {
+            "variable": "angle",
+            "type": "uniform",
+            "interpolation": "nearest",
+            "samples": [-90]
+          }
+        ]
+      },
+      "events": {}
+    },
+    "closed": {
+      "loop": false,
+      "joint_clips": {},
+      "events": {}
+    }
+  }
+}
