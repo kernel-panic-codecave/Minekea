@@ -47,7 +47,7 @@ public class CommonProxy {
             @SideOnly(Side.CLIENT)
             public ItemStack getTabIconItem() 
             {
-              return new ItemStack(Blocks.CONCRETE);
+              return new ItemStack(ModBlocks.blockFurnitureStation);
             }
           };
         MinekeaDenTab = new CreativeTabs("minekeadentab") 
@@ -56,7 +56,7 @@ public class CommonProxy {
             @SideOnly(Side.CLIENT)
             public ItemStack getTabIconItem() 
             {
-              return new ItemStack(Blocks.CONCRETE);
+              return new ItemStack(ModBlocks.blockArmchairWhite);
             }
           };
         MinekeaKitchenTab = new CreativeTabs("minekeakitchentab") 
@@ -65,7 +65,7 @@ public class CommonProxy {
             @SideOnly(Side.CLIENT)
             public ItemStack getTabIconItem() 
             {
-              return new ItemStack(Blocks.CONCRETE);
+              return new ItemStack(ModBlocks.blockKitchenCounterOven);
             }
           };
     }

@@ -66,6 +66,23 @@ public class BlockKitchenCounterStove extends Block
     }
     
     @Override
+    public boolean isFullBlock(IBlockState state) 
+    {
+    	return false;
+    }
+    
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) 
+    {
+    	return false;
+    }
+    
+    @Override
+    public boolean isFullCube(IBlockState state) {
+    	return false;
+    }
+    
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
     {
         world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
