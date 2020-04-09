@@ -2,10 +2,13 @@ package com.withertech.minekea.handler;
 
 import javax.annotation.Nullable;
 
+import com.withertech.minekea.blocks.ContainerKitchenCounterDishwasher;
 import com.withertech.minekea.blocks.ContainerKitchenCounterOven;
 import com.withertech.minekea.blocks.ContainerKitchenWallOven;
+import com.withertech.minekea.blocks.GuiKitchenCounterDishwasher;
 import com.withertech.minekea.blocks.GuiKitchenCounterOven;
 import com.withertech.minekea.blocks.GuiKitchenWallOven;
+import com.withertech.minekea.blocks.TileKitchenCounterDishwasher;
 import com.withertech.minekea.blocks.TileKitchenCounterOven;
 import com.withertech.minekea.blocks.TileKitchenWallOven;
 
@@ -31,6 +34,10 @@ public class GuiHandler implements IGuiHandler
         {
             return new ContainerKitchenWallOven(player.inventory, (TileKitchenWallOven) te);
         }
+        if (te instanceof TileKitchenCounterDishwasher) 
+        {
+            return new ContainerKitchenCounterDishwasher(player.inventory, (TileKitchenCounterDishwasher) te);
+        }
         return null;
     }
 
@@ -49,6 +56,11 @@ public class GuiHandler implements IGuiHandler
         {
             TileKitchenWallOven containerTileEntity = (TileKitchenWallOven) te;
             return new GuiKitchenWallOven(containerTileEntity, new ContainerKitchenWallOven(player.inventory, containerTileEntity));
+        }
+        if (te instanceof TileKitchenCounterDishwasher) 
+        {
+            TileKitchenCounterDishwasher containerTileEntity = (TileKitchenCounterDishwasher) te;
+            return new GuiKitchenCounterDishwasher(containerTileEntity, new ContainerKitchenCounterDishwasher(player.inventory, containerTileEntity));
         }
         return null;
     }

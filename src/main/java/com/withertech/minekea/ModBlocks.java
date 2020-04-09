@@ -133,6 +133,9 @@ public class ModBlocks
 	@GameRegistry.ObjectHolder("minekea:blockkitchencounterstove")
 	public static BlockKitchenCounterStove blockKitchenCounterStove;
 	
+	@GameRegistry.ObjectHolder("minekea:blockkitchencounterdishwasher")
+	public static BlockKitchenCounterDishwasher blockKitchenCounterDishwasher;
+	
 	//Kitchen Wall Oven
 	@GameRegistry.ObjectHolder("minekea:blockkitchenwalloven")
 	public static BlockKitchenWallOven blockKitchenWallOven;
@@ -195,6 +198,7 @@ public class ModBlocks
 		blockKitchenCounterSinkFaucet.initModel();
 		blockKitchenCounterOven.initModel();
 		blockKitchenCounterStove.initModel();
+		blockKitchenCounterDishwasher.initModel();
 		//Kitchen Wall Oven
 		blockKitchenWallOven.initModel();
 		//Kitchen Chair

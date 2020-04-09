@@ -1,0 +1,24 @@
+{
+    "parameters": {
+        "cycle": ["/", 2.0]
+    },
+    "clips": {
+        "opening": ["apply", "minekea:block/blockkitchencounterdishwasher@opening", "#cycle"],
+        "closing": ["apply", "minekea:block/blockkitchencounterdishwasher@closing", "#cycle"],
+        "open": ["apply", "minekea:block/blockkitchencounterdishwasher@open", "#cycle"],
+        "closed": ["apply", "minekea:block/blockkitchencounterdishwasher@closed", "#cycle"]
+    },
+    "states": [
+        "opening",
+        "closing",
+        "open",
+        "closed"
+    ],
+    "transitions": {
+        "open": "closing",
+        "closing": "closed",
+        "closed": "opening",
+        "opening": "open"
+    },
+    "start_state": "closed"
+}

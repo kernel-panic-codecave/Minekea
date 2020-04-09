@@ -10,17 +10,23 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ContainerKitchenWallOven extends Container implements IEnergyContainer
+public class ContainerKitchenCounterDishwasher extends Container implements IEnergyContainer
 {
-    private TileKitchenWallOven te;
+    private TileKitchenCounterDishwasher te;
     private static final int PROGRESS_ID = 0;
-
-    public ContainerKitchenWallOven(IInventory playerInventory, TileKitchenWallOven te) 
+    
+    public ContainerKitchenCounterDishwasher(IInventory playerInventory, TileKitchenCounterDishwasher te) 
     {
         this.te = te;
 
@@ -81,13 +87,13 @@ public class ContainerKitchenWallOven extends Container implements IEnergyContai
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index < TileKitchenWallOven.SIZE) 
+            if (index < TileKitchenCounterDishwasher.SIZE) 
             {
-                if (!this.mergeItemStack(itemstack1, TileKitchenWallOven.SIZE, this.inventorySlots.size(), true)) 
+                if (!this.mergeItemStack(itemstack1, TileKitchenCounterDishwasher.SIZE, this.inventorySlots.size(), true)) 
                 {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, TileKitchenWallOven.SIZE, false)) 
+            } else if (!this.mergeItemStack(itemstack1, 0, TileKitchenCounterDishwasher.SIZE, false)) 
             {
                 return ItemStack.EMPTY;
             }
@@ -103,7 +109,7 @@ public class ContainerKitchenWallOven extends Container implements IEnergyContai
 
         return itemstack;
     }
-
+    
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) 
     {

@@ -40,7 +40,7 @@ public class ContainerKitchenCounterOven extends Container implements IEnergyCon
             {
                 int x = 10 + col * 18;
                 int y = row * 18 + 70;
-                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 10, x, y));
+                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 9, x, y));
             }
         }
 
@@ -114,25 +114,28 @@ public class ContainerKitchenCounterOven extends Container implements IEnergyCon
     public void detectAndSendChanges() 
     {
     	super.detectAndSendChanges();
-    	if (te.getProgress() != te.getClientProgress())
+    	if (!te.getWorld().isRemote)
     	{
-    		te.setClientProgress(te.getProgress());
-	    	for (IContainerListener listener : listeners)
+	    	if (te.getProgress() != te.getClientProgress())
 	    	{
-	    		listener.sendWindowProperty(this, PROGRESS_ID, te.getProgress());
+	    		te.setClientProgress(te.getProgress());
+		    	for (IContainerListener listener : listeners)
+		    	{
+		    		listener.sendWindowProperty(this, PROGRESS_ID, te.getProgress());
+		    	}
 	    	}
-    	}
-    	if (te.getEnergy() != te.getClientEnergy())
-    	{
-    		te.setClientEnergy(te.getEnergy());
-    		for (IContainerListener listener : listeners) 
-			{
-				if (listener instanceof EntityPlayerMP)
+	    	if (te.getEnergy() != te.getClientEnergy())
+	    	{
+	    		te.setClientEnergy(te.getEnergy());
+	    		for (IContainerListener listener : listeners) 
 				{
-					EntityPlayerMP player = (EntityPlayerMP) listener;
-					Messages.INSTANCE.sendTo(new PacketSyncPower(te.getEnergy()), player);
-				}
-    		}
+					if (listener instanceof EntityPlayerMP)
+					{
+						EntityPlayerMP player = (EntityPlayerMP) listener;
+						Messages.INSTANCE.sendTo(new PacketSyncPower(te.getEnergy()), player);
+					}
+	    		}
+	    	}
     	}
     }
     
