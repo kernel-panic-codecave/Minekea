@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "minekea:blocks/blocklcouchwhitemiddlebody",
+		"0": "#wool",
 		"1": "minekea:blocks/blocklcouchwhitemiddlelegs",
 		"particle": "minekea:blocks/blocklcouchwhitemiddlebody"
 	},

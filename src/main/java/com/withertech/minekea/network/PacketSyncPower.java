@@ -14,17 +14,26 @@ public class PacketSyncPower implements IMessage
 	private int energy;
 	
 	@Override
-	public void fromBytes(ByteBuf buf) {energy = buf.readInt();}
+	public void fromBytes(ByteBuf buf)
+	{
+		energy = buf.readInt();
+	}
 	
 	@Override
-	public void toBytes(ByteBuf buf) {buf.writeInt(energy);}
+	public void toBytes(ByteBuf buf)
+	{
+		buf.writeInt(energy);
+	}
 	
 	public PacketSyncPower()
 	{
 		
 	}
 	
-	public PacketSyncPower(int energy) {this.energy = energy;}
+	public PacketSyncPower(int energy)
+	{
+		this.energy = energy;
+	}
 	
 	public static class Handler implements IMessageHandler<PacketSyncPower, IMessage>
 	{

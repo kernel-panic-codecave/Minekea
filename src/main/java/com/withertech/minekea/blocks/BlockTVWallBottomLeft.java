@@ -31,15 +31,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTVWallBottomLeft extends Block 
+public class BlockTVWallBottomLeft extends Block
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final PropertyBool ENABLED = PropertyBool.create("enabled");
-    private static final AxisAlignedBB BASE_AABB_NORTH = new  AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-    private static final AxisAlignedBB BASE_AABB_SOUTH = new  AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-    private static final AxisAlignedBB BASE_AABB_EAST = new  AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-    private static final AxisAlignedBB BASE_AABB_WEST = new  AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyBool ENABLED = PropertyBool.create("enabled");
+	private static final AxisAlignedBB BASE_AABB_NORTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_SOUTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_EAST = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_WEST = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	
 	public BlockTVWallBottomLeft()
 	{
 		super(Material.IRON);
@@ -49,75 +49,75 @@ public class BlockTVWallBottomLeft extends Block
 		setUnlocalizedName(Minekea.MODID + ".blocktvwallbottomleft");
 		setRegistryName("blocktvwallbottomleft");
 		this.setCreativeTab(CommonProxy.MinekeaDenTab);
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-    @SideOnly(Side.CLIENT)
-    public void initModel() 
-    {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState blockState) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            state = state.cycleProperty(ENABLED);
-            worldIn.setBlockState(pos, state, 3);
-            float f = ((Boolean)state.getValue(ENABLED)).booleanValue() ? 0.6F : 0.5F;
-            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
-            worldIn.notifyNeighborsOfStateChange(pos, this, false);
-            return true;
-        }
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
-    {
-        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState()
-                .withProperty(FACING, EnumFacing.getFront(meta & 7))
-                .withProperty(ENABLED, Boolean.valueOf((meta & 8) > 0));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex() + (state.getValue(ENABLED) ? 8 : 0);
-    }
-    
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, ENABLED);
-    }
-    
+	
+	@SideOnly(Side.CLIENT)
+	public void initModel()
+	{
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isBlockNormalCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isRemote)
+		{
+			return true;
+		} else
+		{
+			state = state.cycleProperty(ENABLED);
+			worldIn.setBlockState(pos, state, 3);
+			float f = ((Boolean) state.getValue(ENABLED)).booleanValue() ? 0.6F : 0.5F;
+			worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
+			worldIn.notifyNeighborsOfStateChange(pos, this, false);
+			return true;
+		}
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ENABLED, Boolean.valueOf((meta & 8) > 0));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return state.getValue(FACING).getIndex() + (state.getValue(ENABLED) ? 8 : 0);
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, FACING, ENABLED);
+	}
+	
 //    @Override
 //    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 //    {
@@ -130,55 +130,54 @@ public class BlockTVWallBottomLeft extends Block
 //    	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
 //
 //    }
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-    {
-
-    	switch(state.getValue(FACING))
-    	{
-    		
-    	case NORTH:
-    		return BASE_AABB_NORTH;
-    		
-    	case SOUTH:
-    		return BASE_AABB_SOUTH;
-    		
-    	case EAST:
-    		return BASE_AABB_EAST;
-    		
-    	case WEST:
-    		return BASE_AABB_WEST;
-    		
-    	default:
-    		break;
-    	
-    	}
-		return null;
-    }
-    
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-    {
-    	 
-
-		switch(state.getValue(FACING))
-		{
-		case NORTH:
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_NORTH);
-			break;
-		case SOUTH:
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_SOUTH);
-			break;
-		case EAST:
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_EAST);
-			break;
-		case WEST:
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_WEST);
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
 		
-		default:
-			break;
-		}	
-    	
-    }
-
+		switch (state.getValue(FACING))
+		{
+			
+			case NORTH:
+				return BASE_AABB_NORTH;
+			
+			case SOUTH:
+				return BASE_AABB_SOUTH;
+			
+			case EAST:
+				return BASE_AABB_EAST;
+			
+			case WEST:
+				return BASE_AABB_WEST;
+			
+			default:
+				break;
+			
+		}
+		return null;
+	}
+	
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+	{
+		
+		switch (state.getValue(FACING))
+		{
+			case NORTH:
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_NORTH);
+				break;
+			case SOUTH:
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_SOUTH);
+				break;
+			case EAST:
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_EAST);
+				break;
+			case WEST:
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB_WEST);
+				
+			default:
+				break;
+		}
+		
+	}
+	
 }

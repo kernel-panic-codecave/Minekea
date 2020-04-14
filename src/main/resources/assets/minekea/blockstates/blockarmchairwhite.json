@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minekea:blockarmchairwhite"
+    "model": "minekea:blockarmchairwhite",
+    "textures": {
+      "wool": "minekea:blocks/blockarmchairwhitebody"
+    }
   },
   "variants": {
     "normal": [{}],

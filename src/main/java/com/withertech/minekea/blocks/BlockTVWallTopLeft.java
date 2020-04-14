@@ -27,10 +27,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTVWallTopLeft extends Block 
+public class BlockTVWallTopLeft extends Block
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final PropertyBool ENABLED = PropertyBool.create("enabled");
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyBool ENABLED = PropertyBool.create("enabled");
 	
 	public BlockTVWallTopLeft()
 	{
@@ -41,72 +41,72 @@ public class BlockTVWallTopLeft extends Block
 		setUnlocalizedName(Minekea.MODID + ".blocktvwalltopleft");
 		setRegistryName("blocktvwalltopleft");
 		this.setCreativeTab(CommonProxy.MinekeaDenTab);
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-    @SideOnly(Side.CLIENT)
-    public void initModel() 
-    {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState blockState) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            state = state.cycleProperty(ENABLED);
-            worldIn.setBlockState(pos, state, 3);
-            float f = ((Boolean)state.getValue(ENABLED)).booleanValue() ? 0.6F : 0.5F;
-            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
-            worldIn.notifyNeighborsOfStateChange(pos, this, false);
-            return true;
-        }
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
-    {
-        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState()
-                .withProperty(FACING, EnumFacing.getFront(meta & 7))
-                .withProperty(ENABLED, Boolean.valueOf((meta & 8) > 0));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex() + (state.getValue(ENABLED) ? 8 : 0);
-    }
-    
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, ENABLED);
-    }
+	
+	@SideOnly(Side.CLIENT)
+	public void initModel()
+	{
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isBlockNormalCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isRemote)
+		{
+			return true;
+		} else
+		{
+			state = state.cycleProperty(ENABLED);
+			worldIn.setBlockState(pos, state, 3);
+			float f = ((Boolean) state.getValue(ENABLED)).booleanValue() ? 0.6F : 0.5F;
+			worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
+			worldIn.notifyNeighborsOfStateChange(pos, this, false);
+			return true;
+		}
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ENABLED, Boolean.valueOf((meta & 8) > 0));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return state.getValue(FACING).getIndex() + (state.getValue(ENABLED) ? 8 : 0);
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, FACING, ENABLED);
+	}
 }

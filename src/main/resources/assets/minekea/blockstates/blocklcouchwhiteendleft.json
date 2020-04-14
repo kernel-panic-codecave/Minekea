@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minekea:blocklcouchwhiteendleft"
+    "model": "minekea:blocklcouchwhiteendleft",
+    "textures": {
+      "wool": "minekea:blocks/blocklcouchwhiteendleftbody"
+    }
   },
   "variants": {
     "normal": [{}],

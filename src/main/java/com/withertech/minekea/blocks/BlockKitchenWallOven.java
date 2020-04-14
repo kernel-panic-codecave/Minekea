@@ -34,7 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockKitchenWallOven extends Block implements ITileEntityProvider
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	
 	public BlockKitchenWallOven()
 	{
@@ -45,87 +45,93 @@ public class BlockKitchenWallOven extends Block implements ITileEntityProvider
 		setUnlocalizedName(Minekea.MODID + ".blockkitchenwalloven");
 		setRegistryName("blockkitchenwalloven");
 		this.setCreativeTab(CommonProxy.MinekeaKitchenTab);
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) 
+	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileKitchenWallOven();
 	}
 	
-    @SideOnly(Side.CLIENT)
-    public void initModel() 
-    {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-        ClientRegistry.bindTileEntitySpecialRenderer(TileKitchenWallOven.class, new AnimationTESR<>());
-    }
-    
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return state.withProperty(Properties.StaticProperty, false);
-    }
-    
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState blockState) 
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) 
-    {
-        return false;
-    }
-    
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) 
-    {
-        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new ExtendedBlockState(this,
-                new IProperty[] {Properties.StaticProperty, FACING },
-                new IUnlistedProperty[] {Properties.AnimationProperty});
-    }
-    
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
-    {
-        // Only execute on the server
-        if (world.isRemote) {
-            return true;
-        }
-        TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TileKitchenWallOven)) {
-            return false;
-        }
-        player.openGui(Minekea.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
-        return true;
-    }
+	@SideOnly(Side.CLIENT)
+	public void initModel()
+	{
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileKitchenWallOven.class, new AnimationTESR<>());
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+	{
+		return state.withProperty(Properties.StaticProperty, false);
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state)
+	{
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isBlockNormalCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return state.getValue(FACING).getIndex();
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new ExtendedBlockState(this, new IProperty[]
+		{ Properties.StaticProperty, FACING }, new IUnlistedProperty[]
+		{ Properties.AnimationProperty });
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		// Only execute on the server
+		if (world.isRemote)
+		{
+			return true;
+		}
+		TileEntity te = world.getTileEntity(pos);
+		if (!(te instanceof TileKitchenWallOven))
+		{
+			return false;
+		}
+		player.openGui(Minekea.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
+	}
 }

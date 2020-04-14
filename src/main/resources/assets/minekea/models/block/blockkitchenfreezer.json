@@ -8,6 +8,7 @@
 		"3": "minekea:blocks/blockkitchenfreezerpizza",
 		"4": "minekea:blocks/blockkitchenfreezerfishsticks",
 		"5": "minekea:blocks/blockkitchenfreezericecream",
+		"6": "minekea:blocks/blockkitchenfreezerhandle",
 		"particle": "minekea:blocks/blockkitchenfreezerbody"
 	},
 	"elements": [
@@ -16,7 +17,7 @@
 			"from": [1, 7, 1],
 			"to": [15, 8, 15],
 			"faces": {
-				"north": {"uv": [1, 8, 15, 9], "texture": "#missing"},
+				"north": {"uv": [1, 8, 15, 9], "texture": "#1"},
 				"east": {"uv": [1, 8, 15, 9], "texture": "#missing"},
 				"south": {"uv": [1, 8, 15, 9], "texture": "#missing"},
 				"west": {"uv": [1, 8, 15, 9], "texture": "#missing"},
@@ -155,6 +156,32 @@
 				"up": {"uv": [8, 3, 13, 9], "texture": "#4"},
 				"down": {"uv": [8, 7, 13, 13], "texture": "#4"}
 			}
+		},
+		{
+			"name": "door",
+			"from": [1, 1, 0],
+			"to": [15, 15, 1],
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"east": {"uv": [15, 1, 16, 15], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#2"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#0"},
+				"up": {"uv": [1, 0, 15, 1], "texture": "#0"},
+				"down": {"uv": [1, 15, 15, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "handle",
+			"from": [2, 4, -1],
+			"to": [3, 12, 0],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#6"}
+			}
 		}
 	],
 	"groups": [
@@ -167,6 +194,11 @@
 			"name": "food",
 			"origin": [8, 8, 8],
 			"children": [6, 7, 8, 9, 10]
+		},
+		{
+			"name": "door",
+			"origin": [8, 8, 8],
+			"children": [11, 12]
 		}
 	]
 }

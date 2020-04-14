@@ -58,8 +58,9 @@ public class TileKitchenCounterDishwasher extends TileEntity implements ITickabl
 	private int clientEnergy = -1;
 	
 	private EntityPlayer player = Minekea.proxy.getClientPlayer();
+	
 	@Override
-	public void update() 
+	public void update()
 	{
 		if (world != null && world.isRemote)
 		{
@@ -67,57 +68,52 @@ public class TileKitchenCounterDishwasher extends TileEntity implements ITickabl
 			{
 				asm.transition("opening");
 				
-
 			} else if (!(player.openContainer instanceof ContainerKitchenCounterDishwasher) && asm.currentState().equals("open"))
 			{
 				asm.transition("closing");
 			}
 		}
-	      if (energyStorage.getEnergyStored() < RF_PER_TICK) 
-	      {
-	          return;
-	      }
-
-            for(int i = 0; i < 3; i++)
-            {
-            	System.out.println(inputHandler.getStackInSlot(i).getItemDamage());
-            	
-            	if (inputHandler.getStackInSlot(i).getItemDamage() > 0)
-            	{
-    				energyStorage.consumePower(RF_PER_TICK);
-                    if(inputHandler.getStackInSlot(i) != ItemStack.EMPTY)
-                    {
-                        if(inputHandler.getStackInSlot(i).getMaxDamage() - inputHandler.getStackInSlot(i).getItemDamage() != inputHandler.getStackInSlot(i).getMaxDamage())
-                        {
-                            inputHandler.getStackInSlot(i).setItemDamage(inputHandler.getStackInSlot(i).getItemDamage() - 1);
-                        }
-        				markDirty();
-                    }
-            	}
-            	if (inputHandler.getStackInSlot(i).getItemDamage() == 0)
-            	{
-        			if (insertOutput(inputHandler.getStackInSlot(i).copy(), false))
-        			{
-        				inputHandler.extractItem(i, 1, false);
-        			}
-            	}
-				markDirty();
-
-
-            }
-
+		if (energyStorage.getEnergyStored() < RF_PER_TICK)
+		{
+			return;
+		}
+		
+		for (int i = 0; i < 3; i++)
+		{
+			if (inputHandler.getStackInSlot(i).getItemDamage() > 0)
+			{
+				energyStorage.consumePower(RF_PER_TICK);
+				if (inputHandler.getStackInSlot(i) != ItemStack.EMPTY)
+				{
+					if (inputHandler.getStackInSlot(i).getMaxDamage() - inputHandler.getStackInSlot(i).getItemDamage() != inputHandler.getStackInSlot(i).getMaxDamage())
+					{
+						inputHandler.getStackInSlot(i).setItemDamage(inputHandler.getStackInSlot(i).getItemDamage() - 1);
+					}
+					markDirty();
+				}
+			}
+			if (inputHandler.getStackInSlot(i).getItemDamage() == 0)
+			{
+				if (insertOutput(inputHandler.getStackInSlot(i).copy(), false))
+				{
+					inputHandler.extractItem(i, 1, false);
+				}
+			}
+			markDirty();
+		}
 	}
 	
-    @Nullable
-    private final IAnimationStateMachine asm;
-
-    public TileKitchenCounterDishwasher() {
-        asm = Minekea.proxy.load(new ResourceLocation(Minekea.MODID, "asms/block/blockkitchencounterdishwasher.json"), ImmutableMap.of());
-    }
-    
+	@Nullable
+	private final IAnimationStateMachine asm;
+	
+	public TileKitchenCounterDishwasher()
+	{
+		asm = Minekea.proxy.load(new ResourceLocation(Minekea.MODID, "asms/block/blockkitchencounterdishwasher.json"), ImmutableMap.of());
+	}
+	
 	private boolean insertOutput(ItemStack output, boolean simulate)
 	{
-		for (int i = 0 ; i < OUTPUT_SLOTS ; i++)
+		for (int i = 0; i < OUTPUT_SLOTS; i++)
 		{
 			ItemStack remaining = outputHandler.insertItem(i, output, simulate);
 			if (remaining.isEmpty())
@@ -128,11 +124,9 @@ public class TileKitchenCounterDishwasher extends TileEntity implements ITickabl
 		return false;
 	}
 	
-
-	
 	private void attemptRepair()
 	{
-		for (int i = 0 ; i < INPUT_SLOTS ; i++)
+		for (int i = 0; i < INPUT_SLOTS; i++)
 		{
 			if (insertOutput(inputHandler.getStackInSlot(i).copy(), false))
 			{
@@ -141,154 +135,159 @@ public class TileKitchenCounterDishwasher extends TileEntity implements ITickabl
 		}
 	}
 	
-	public int getProgress() {
+	public int getProgress()
+	{
 		return progress;
 	}
 	
-	public void setProgress(int progress) {
+	public void setProgress(int progress)
+	{
 		this.progress = progress;
 	}
 	
-    public int getClientProgress() {
+	public int getClientProgress()
+	{
 		return clientProgress;
 	}
-
-	public void setClientProgress(int clientProgress) {
+	
+	public void setClientProgress(int clientProgress)
+	{
 		this.clientProgress = clientProgress;
 	}
 	
-	public int getClientEnergy() {
+	public int getClientEnergy()
+	{
 		return clientEnergy;
 	}
-
-    public int getEnergy() {
-        return energyStorage.getEnergyStored();
-    }
-    
-	public void setClientEnergy(int clientEnergy) {
+	
+	public int getEnergy()
+	{
+		return energyStorage.getEnergyStored();
+	}
+	
+	public void setClientEnergy(int clientEnergy)
+	{
 		this.clientEnergy = clientEnergy;
 	}
-
-	private ItemStackHandler inputHandler = new ItemStackHandler(INPUT_SLOTS) 
-    {
-	    @Override
-	    public boolean isItemValid(int slot, ItemStack stack)
-	    {
-	        return (stack.getItem() instanceof ItemSword) || (stack.getItem() instanceof ItemPickaxe) || (stack.getItem() instanceof ItemAxe) || (stack.getItem() instanceof ItemSpade) || (stack.getItem() instanceof ItemHoe) || (stack.getItem() instanceof ItemBow) || (stack.getItem() instanceof ItemFishingRod) || (stack.getItem() instanceof ItemShears) || (stack.getItem() instanceof ItemShield) || (stack.getItem() instanceof ItemCarrotOnAStick);
-	    }
-    	
-        @Override
-        protected void onContentsChanged(int slot) 
-        {
-            // We need to tell the tile entity that something has changed so
-            // that the chest contents is persisted
-            TileKitchenCounterDishwasher.this.markDirty();
-        }
-    };
-    
-    private ItemStackHandler outputHandler = new ItemStackHandler(OUTPUT_SLOTS) 
-    {
-    	@Override
-    	public boolean isItemValid(int slot, @Nonnull ItemStack stack) 
-    	{
-    		return false;
-    	}
-    	
-        @Override
-        protected void onContentsChanged(int slot) 
-        {
-            // We need to tell the tile entity that something has changed so
-            // that the chest contents is persisted
-            TileKitchenCounterDishwasher.this.markDirty();
-        }
-    };
-    
-    private CombinedInvWrapper combinedHandler = new CombinedInvWrapper(inputHandler, outputHandler);
-    
-//-------------------------------------------------------------------------------------------------------------
-    
-    private EnergyStorageUtil energyStorage = new EnergyStorageUtil(MAX_POWER, RF_PER_TICK_INPUT);
-    
-//-------------------------------------------------------------------------------------------------------------
-    
-    @Override
-    public void readFromNBT(NBTTagCompound compound) 
-    {
-        super.readFromNBT(compound);
-        if (compound.hasKey("itemsIn")) 
-        {
-            inputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsIn"));
-        }
-        if (compound.hasKey("itemsOut")) 
-        {
-            outputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsOut"));
-        }
-        progress = compound.getInteger("progress");
-        energyStorage.setEnergy(compound.getInteger("energy"));
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) 
-    {
-        super.writeToNBT(compound);
-        compound.setTag("itemsIn", inputHandler.serializeNBT());
-        compound.setTag("itemsOut", outputHandler.serializeNBT());
-        compound.setInteger("progress", progress);
-        compound.setInteger("energy", energyStorage.getEnergyStored());
-        return compound;
-    }
-    
-    public boolean canInteractWith(EntityPlayer playerIn) 
-    {
-        // If we are too far away from this tile entity you cannot use it
-        return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
-    }
-
-    
-    
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) 
-    {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) 
-        {
-            return true;
-        }
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) 
-        {
-            return true;
-        }
-        if (capability == CapabilityEnergy.ENERGY)
-        {
-        	return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) 
-    {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) 
-        {
-        	if (facing == null)
-        	{
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(combinedHandler);
-        	} else if (facing == EnumFacing.UP)
-        	{
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inputHandler);
-        	} else
-        	{
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(outputHandler);
-        	}
-        	
-        }
-        if (capability == CapabilityAnimation.ANIMATION_CAPABILITY) 
-        {
-            return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
-        }
-        if (capability == CapabilityEnergy.ENERGY) 
-        {
-            return CapabilityEnergy.ENERGY.cast(energyStorage);
-        }
-        return super.getCapability(capability, facing);
-    }
+	
+	private ItemStackHandler inputHandler = new ItemStackHandler(INPUT_SLOTS)
+	{
+		@Override
+		public boolean isItemValid(int slot, ItemStack stack)
+		{
+			return (stack.getItem() instanceof ItemSword) || (stack.getItem() instanceof ItemPickaxe) || (stack.getItem() instanceof ItemAxe) || (stack.getItem() instanceof ItemSpade) || (stack.getItem() instanceof ItemHoe) || (stack.getItem() instanceof ItemBow) || (stack.getItem() instanceof ItemFishingRod) || (stack.getItem() instanceof ItemShears) || (stack.getItem() instanceof ItemShield) || (stack.getItem() instanceof ItemCarrotOnAStick);
+		}
+		
+		@Override
+		protected void onContentsChanged(int slot)
+		{
+			// We need to tell the tile entity that something has changed so
+			// that the chest contents is persisted
+			TileKitchenCounterDishwasher.this.markDirty();
+		}
+	};
+	
+	private ItemStackHandler outputHandler = new ItemStackHandler(OUTPUT_SLOTS)
+	{
+		@Override
+		public boolean isItemValid(int slot, @Nonnull ItemStack stack)
+		{
+			return false;
+		}
+		
+		@Override
+		protected void onContentsChanged(int slot)
+		{
+			// We need to tell the tile entity that something has changed so
+			// that the chest contents is persisted
+			TileKitchenCounterDishwasher.this.markDirty();
+		}
+	};
+	
+	private CombinedInvWrapper combinedHandler = new CombinedInvWrapper(inputHandler, outputHandler);
+	
+	// -------------------------------------------------------------------------------------------------------------
+	
+	private EnergyStorageUtil energyStorage = new EnergyStorageUtil(MAX_POWER, RF_PER_TICK_INPUT);
+	
+	// -------------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound)
+	{
+		super.readFromNBT(compound);
+		if (compound.hasKey("itemsIn"))
+		{
+			inputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsIn"));
+		}
+		if (compound.hasKey("itemsOut"))
+		{
+			outputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsOut"));
+		}
+		progress = compound.getInteger("progress");
+		energyStorage.setEnergy(compound.getInteger("energy"));
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	{
+		super.writeToNBT(compound);
+		compound.setTag("itemsIn", inputHandler.serializeNBT());
+		compound.setTag("itemsOut", outputHandler.serializeNBT());
+		compound.setInteger("progress", progress);
+		compound.setInteger("energy", energyStorage.getEnergyStored());
+		return compound;
+	}
+	
+	public boolean canInteractWith(EntityPlayer playerIn)
+	{
+		// If we are too far away from this tile entity you cannot use it
+		return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			return true;
+		}
+		if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+		{
+			return true;
+		}
+		if (capability == CapabilityEnergy.ENERGY)
+		{
+			return true;
+		}
+		return super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			if (facing == null)
+			{
+				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(combinedHandler);
+			} else if (facing == EnumFacing.UP)
+			{
+				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inputHandler);
+			} else
+			{
+				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(outputHandler);
+			}
+			
+		}
+		if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+		{
+			return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
+		}
+		if (capability == CapabilityEnergy.ENERGY)
+		{
+			return CapabilityEnergy.ENERGY.cast(energyStorage);
+		}
+		return super.getCapability(capability, facing);
+	}
 }
