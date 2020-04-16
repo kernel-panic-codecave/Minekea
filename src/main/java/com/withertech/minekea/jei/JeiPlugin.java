@@ -6,8 +6,10 @@ import javax.annotation.Nonnull;
 
 import com.withertech.minekea.ModBlocks;
 import com.withertech.minekea.blocks.ContainerKitchenCounterOven;
+import com.withertech.minekea.blocks.ContainerKitchenMicrowave;
 import com.withertech.minekea.blocks.ContainerKitchenWallOven;
 import com.withertech.minekea.blocks.TileKitchenCounterOven;
+import com.withertech.minekea.blocks.TileKitchenMicrowave;
 import com.withertech.minekea.blocks.TileKitchenWallOven;
 import com.withertech.minekea.customrecipes.ToasterRecipe;
 import com.withertech.minekea.customrecipes.ToasterRecipeRegistry;
@@ -35,6 +37,7 @@ public class JeiPlugin implements IModPlugin
 		registerCounterOvenHandling(registry);
 		registerWallOvenHandling(registry);
 		registerToasterHandling(registry);
+		registerMicrowaveHandling(registry);
 	}
 	
 	private void registerToasterHandling(@Nonnull IModRegistry registry)
@@ -60,6 +63,14 @@ public class JeiPlugin implements IModPlugin
 		
 		IRecipeTransferRegistry transferRegistry = registry.getRecipeTransferRegistry();
 		transferRegistry.addRecipeTransferHandler(ContainerKitchenWallOven.class, VanillaRecipeCategoryUid.SMELTING, 0, TileKitchenWallOven.INPUT_SLOTS, TileKitchenWallOven.INPUT_SLOTS + TileKitchenWallOven.OUTPUT_SLOTS, 36);
+	}
+	
+	private void registerMicrowaveHandling(@Nonnull IModRegistry registry)
+	{
+		registry.addRecipeCatalyst(new ItemStack(ModBlocks.blockKitchenMicrowave), VanillaRecipeCategoryUid.SMELTING);
+		
+		IRecipeTransferRegistry transferRegistry = registry.getRecipeTransferRegistry();
+		transferRegistry.addRecipeTransferHandler(ContainerKitchenMicrowave.class, VanillaRecipeCategoryUid.SMELTING, 0, TileKitchenMicrowave.INPUT_SLOTS, TileKitchenMicrowave.INPUT_SLOTS + TileKitchenMicrowave.OUTPUT_SLOTS, 36);
 	}
 	
 	@Override

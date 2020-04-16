@@ -194,6 +194,18 @@ public class ModBlocks
 	@GameRegistry.ObjectHolder("minekea:blockkitchentoaster")
 	public static BlockKitchenToaster blockKitchenToaster;
 	
+	// Kitchen Blender
+	@GameRegistry.ObjectHolder("minekea:blockkitchenblender")
+	public static BlockKitchenBlender blockKitchenBlender;
+	
+	// Kitchen Microwave
+	@GameRegistry.ObjectHolder("minekea:blockkitchenmicrowave")
+	public static BlockKitchenMicrowave blockKitchenMicrowave;
+	
+	// Kitchen Blender
+	@GameRegistry.ObjectHolder("minekea:blockkitchenfoodprocessor")
+	public static BlockKitchenFoodProcessor blockKitchenFoodProcessor;
+	
 	@SideOnly(Side.CLIENT)
 	public static void initModels()
 	{
@@ -273,5 +285,11 @@ public class ModBlocks
 		blockKitchenFridge.initModel();
 		// Kitchen Toaster
 		blockKitchenToaster.initModel();
+		// Kitchen Blender
+		blockKitchenBlender.initModel();
+		// Kitchen Microwave
+		blockKitchenMicrowave.initModel();
+		// Kitchen Food Processor
+		blockKitchenFoodProcessor.initModel();
 	}
 }

@@ -21,6 +21,9 @@ public class ModItems
 	@GameRegistry.ObjectHolder("minekea:itemnowyadoneit")
 	public static ItemNowYaDoneIt itemNowYaDoneIt;
 	
+	@GameRegistry.ObjectHolder("minekea:itemsmoothie")
+	public static ItemSmoothie itemSmoothie;
+	
 	@SideOnly(Side.CLIENT)
 	public static void initModels()
 	{
@@ -28,5 +31,6 @@ public class ModItems
 		itemWhyWouldYouDoThis.initModel();
 		itemPleaseStop.initModel();
 		itemNowYaDoneIt.initModel();
+		itemSmoothie.initModel();
 	}
 }

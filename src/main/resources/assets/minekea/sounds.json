@@ -1,0 +1,12 @@
+{
+  "soundkitchenblender": {
+    "category": "block",
+    "subtitle": "minekea.subtitle.blender",
+    "sounds": [ "minekea:soundkitchenblender" ]
+  },
+    "soundkitchenfoodprocessor": {
+    "category": "block",
+    "subtitle": "minekea.subtitle.blender",
+    "sounds": [ "minekea:soundkitchenfoodprocessor" ]
+  }
+}

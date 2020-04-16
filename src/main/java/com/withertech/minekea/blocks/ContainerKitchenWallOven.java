@@ -34,6 +34,16 @@ public class ContainerKitchenWallOven extends Container implements IEnergyContai
 		addPlayerSlots(playerInventory);
 	}
 	
+	public TileKitchenWallOven getTe()
+	{
+		return te;
+	}
+
+	public void setTe(TileKitchenWallOven te)
+	{
+		this.te = te;
+	}
+
 	private void addPlayerSlots(IInventory playerInventory)
 	{
 		// Slots for the main inventory

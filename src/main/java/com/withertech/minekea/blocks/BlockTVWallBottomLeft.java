@@ -35,10 +35,10 @@ public class BlockTVWallBottomLeft extends Block
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	public static final PropertyBool ENABLED = PropertyBool.create("enabled");
-	private static final AxisAlignedBB BASE_AABB_NORTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-	private static final AxisAlignedBB BASE_AABB_SOUTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-	private static final AxisAlignedBB BASE_AABB_EAST = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
-	private static final AxisAlignedBB BASE_AABB_WEST = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_NORTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (14 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_SOUTH = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (2 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_EAST = new AxisAlignedBB((0 * 0.0625), (0 * 0.0625), (0 * 0.0625), (2 * 0.0625), (16 * 0.0625), (16 * 0.0625));
+	private static final AxisAlignedBB BASE_AABB_WEST = new AxisAlignedBB((14 * 0.0625), (0 * 0.0625), (0 * 0.0625), (16 * 0.0625), (16 * 0.0625), (16 * 0.0625));
 	
 	public BlockTVWallBottomLeft()
 	{
@@ -73,6 +73,18 @@ public class BlockTVWallBottomLeft extends Block
 	
 	@Override
 	public boolean isOpaqueCube(IBlockState blockState)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
@@ -118,18 +130,6 @@ public class BlockTVWallBottomLeft extends Block
 		return new BlockStateContainer(this, FACING, ENABLED);
 	}
 	
-//    @Override
-//    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-//    {
-//    	return BOUNDS;
-//    }
-//    
-//    @Override
-//    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-//    {
-//    	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
-//
-//    }
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{

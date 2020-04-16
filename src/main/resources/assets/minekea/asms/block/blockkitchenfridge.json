@@ -1,6 +1,6 @@
 {
     "parameters": {
-        "cycle": ["/", 2.0]
+        "cycle": ["/", 1.0]
     },
     "clips": {
         "opening": ["apply", "minekea:block/blockkitchenfridge@opening", "#cycle"],

@@ -13,11 +13,13 @@ import com.withertech.minekea.EnumColor;
 import com.withertech.minekea.Minekea;
 import com.withertech.minekea.ModBlocks;
 import com.withertech.minekea.ModItems;
+import com.withertech.minekea.ModSounds;
 import com.withertech.minekea.blocks.*;
 import com.withertech.minekea.handler.GuiHandler;
 import com.withertech.minekea.items.ItemCookedBread;
 import com.withertech.minekea.items.ItemNowYaDoneIt;
 import com.withertech.minekea.items.ItemPleaseStop;
+import com.withertech.minekea.items.ItemSmoothie;
 import com.withertech.minekea.items.ItemWhyWouldYouDoThis;
 import com.withertech.minekea.network.Messages;
 
@@ -31,6 +33,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.animation.ITimeValue;
 import net.minecraftforge.common.model.animation.IAnimationStateMachine;
@@ -104,6 +108,13 @@ public class CommonProxy
 	}
 	
 	@SubscribeEvent
+	public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
+	{
+		event.getRegistry().register(ModSounds.SoundKitchenBlender.setRegistryName("soundkitchenblender"));
+		event.getRegistry().register(ModSounds.SoundKitchenFoodProcessor.setRegistryName("soundkitchenfoodprocessor"));
+	}
+	
+	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event)
 	{
 		event.getRegistry().register(new BlockTVStandEndLeft());
@@ -159,6 +170,7 @@ public class CommonProxy
 		event.getRegistry().register(new BlockKitchenTableTileableRight());
 		
 		event.getRegistry().register(new BlockKitchenCounterStraight());
+		GameRegistry.registerTileEntity(TileKitchenCounterStraight.class, new ResourceLocation("minekea:tilekitchencounterstraight"));
 		event.getRegistry().register(new BlockKitchenCounterCornerInner());
 		event.getRegistry().register(new BlockKitchenCounterCornerOuter());
 		event.getRegistry().register(new BlockKitchenCounterEndLeft());
@@ -166,24 +178,33 @@ public class CommonProxy
 		event.getRegistry().register(new BlockKitchenCounterSink());
 		event.getRegistry().register(new BlockKitchenCounterSinkFaucet());
 		event.getRegistry().register(new BlockKitchenCounterOven());
-		GameRegistry.registerTileEntity(TileKitchenCounterOven.class, Minekea.MODID + "_kitchencounteroven");
+		GameRegistry.registerTileEntity(TileKitchenCounterOven.class, new ResourceLocation("minekea:tilekitchencounteroven"));
 		event.getRegistry().register(new BlockKitchenCounterStove());
 		event.getRegistry().register(new BlockKitchenCounterDishwasher());
-		GameRegistry.registerTileEntity(TileKitchenCounterDishwasher.class, Minekea.MODID + "_kitchencounterdishwasher");
+		GameRegistry.registerTileEntity(TileKitchenCounterDishwasher.class, new ResourceLocation("minekea:tilekitchencounterdishwasher"));
 		
 		event.getRegistry().register(new BlockKitchenWallOven());
-		GameRegistry.registerTileEntity(TileKitchenWallOven.class, Minekea.MODID + "_kitchenwalloven");
+		GameRegistry.registerTileEntity(TileKitchenWallOven.class, new ResourceLocation("minekea:tilekitchenwalloven"));
 		
 		event.getRegistry().register(new BlockKitchenChair());
 		
 		event.getRegistry().register(new BlockKitchenFreezer());
-		GameRegistry.registerTileEntity(TileKitchenFreezer.class, Minekea.MODID + "_kitchenfreezer");
+		GameRegistry.registerTileEntity(TileKitchenFreezer.class, new ResourceLocation("minekea:tilekitchenfreezer"));
 		
 		event.getRegistry().register(new BlockKitchenFridge());
-		GameRegistry.registerTileEntity(TileKitchenFridge.class, Minekea.MODID + "_kitchenfridge");
+		GameRegistry.registerTileEntity(TileKitchenFridge.class, new ResourceLocation("minekea:tilekitchenfridge"));
 		
 		event.getRegistry().register(new BlockKitchenToaster());
-		GameRegistry.registerTileEntity(TileKitchenToaster.class, Minekea.MODID + "_kitchentoaster");
+		GameRegistry.registerTileEntity(TileKitchenToaster.class, new ResourceLocation("minekea:tilekitchentoaster"));
+		
+		event.getRegistry().register(new BlockKitchenBlender());
+		GameRegistry.registerTileEntity(TileKitchenBlender.class, new ResourceLocation("minekea:tilekitchenblender"));
+		
+		event.getRegistry().register(new BlockKitchenMicrowave());
+		GameRegistry.registerTileEntity(TileKitchenMicrowave.class, new ResourceLocation("minekea:tilekitchenmicrowave"));
+		
+		event.getRegistry().register(new BlockKitchenFoodProcessor());
+		GameRegistry.registerTileEntity(TileKitchenFoodProcessor.class, new ResourceLocation("minekea:tilekitchenfoodprocessor"));
 	}
 	
 	@SubscribeEvent
@@ -193,6 +214,7 @@ public class CommonProxy
 		event.getRegistry().register(new ItemWhyWouldYouDoThis());
 		event.getRegistry().register(new ItemPleaseStop());
 		event.getRegistry().register(new ItemNowYaDoneIt());
+		event.getRegistry().register(new ItemSmoothie());
 		
 		event.getRegistry().register(new ItemBlock(ModBlocks.blockTVStandEndLeft).setRegistryName(ModBlocks.blockTVStandEndLeft.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(ModBlocks.blockTVStandEndRight).setRegistryName(ModBlocks.blockTVStandEndRight.getRegistryName()));
@@ -264,6 +286,12 @@ public class CommonProxy
 		event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenFridge).setRegistryName(ModBlocks.blockKitchenFridge.getRegistryName()));
 		
 		event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenToaster).setRegistryName(ModBlocks.blockKitchenToaster.getRegistryName()));
+		
+		event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenBlender).setRegistryName(ModBlocks.blockKitchenBlender.getRegistryName()));
+		
+		event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenMicrowave).setRegistryName(ModBlocks.blockKitchenMicrowave.getRegistryName()));
+		
+		event.getRegistry().register(new ItemBlock(ModBlocks.blockKitchenFoodProcessor).setRegistryName(ModBlocks.blockKitchenFoodProcessor.getRegistryName()));
 	}
 	
 	public ListenableFuture<Object> addScheduledTaskClient(Runnable runnableToSchedule)

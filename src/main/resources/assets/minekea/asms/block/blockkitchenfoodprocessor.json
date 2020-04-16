@@ -1,0 +1,18 @@
+{
+    "parameters": {
+        "cycle": ["/", 0.3]
+    },
+    "clips": {
+        "on": ["apply", "minekea:block/blockkitchenfoodprocessor@on", "#cycle"],
+        "off": ["apply", "minekea:block/blockkitchenfoodprocessor@off", "#cycle"]
+    },
+    "states": [
+        "on",
+        "off"
+    ],
+    "transitions": {
+        "on": "off",
+        "off": "on"
+    },
+    "start_state": "off"
+}

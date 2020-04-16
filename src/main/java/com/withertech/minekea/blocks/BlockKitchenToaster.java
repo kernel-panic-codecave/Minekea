@@ -192,6 +192,27 @@ public class BlockKitchenToaster extends Block implements ITileEntityProvider
 	}
 	
 	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+	{
+		if (!world.isRemote)
+		{
+			TileKitchenToaster te = getTE(world, pos);
+			ItemStack stack1 = te.getStack1();
+			ItemStack stack2 = te.getStack2();
+			if (!stack1.isEmpty())
+			{
+				EntityItem entityItem1 = new EntityItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), stack1);
+				world.spawnEntity(entityItem1);
+			}
+			if (!stack2.isEmpty())
+			{
+				EntityItem entityItem2 = new EntityItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), stack2);
+				world.spawnEntity(entityItem2);
+			}
+		}
+	}
+	
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		

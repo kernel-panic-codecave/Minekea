@@ -63,7 +63,7 @@ public class TileKitchenFridge extends TileEntity implements ITickable
 	private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE)
 	{
 		@Override
-		public boolean isItemValid(int slot, ItemStack stack) 
+		public boolean isItemValid(int slot, ItemStack stack)
 		{
 			return stack.getItem() instanceof ItemFood;
 			

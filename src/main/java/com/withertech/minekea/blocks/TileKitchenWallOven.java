@@ -230,6 +230,7 @@ public class TileKitchenWallOven extends TileEntity implements ITickable
 			outputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsOut"));
 		}
 		progress = compound.getInteger("progress");
+		energyStorage.setEnergy(compound.getInteger("energy"));
 	}
 	
 	@Override
@@ -239,6 +240,7 @@ public class TileKitchenWallOven extends TileEntity implements ITickable
 		compound.setTag("itemsIn", inputHandler.serializeNBT());
 		compound.setTag("itemsOut", outputHandler.serializeNBT());
 		compound.setInteger("progress", progress);
+		compound.setInteger("energy", energyStorage.getEnergyStored());
 		return compound;
 	}
 	

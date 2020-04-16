@@ -53,7 +53,7 @@ public class TileKitchenToaster extends TileEntity implements ITickable
 	private ItemStack stack1 = ItemStack.EMPTY;
 	private ItemStack stack2 = ItemStack.EMPTY;
 	
-	private int progress = 0;
+	private int progress = 60;
 	public static final int MAX_PROGRESS = 60;
 	public boolean done = false;
 	

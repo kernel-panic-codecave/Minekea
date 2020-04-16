@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-    "parent": "block/block",
+	"parent": "block/block",
 	"textures": {
 		"0": "minekea:blocks/blocktvwallbottommiddlerim",
 		"1": "#screen",
@@ -12,12 +12,12 @@
 			"from": [0, 1, 15],
 			"to": [16, 16, 16],
 			"faces": {
-				"north": {"uv": [1, 0, 16, 15], "texture": "#1"},
+				"north": {"uv": [0, 0, 16, 15], "texture": "#1"},
 				"east": {"uv": [0, 0, 1, 15], "texture": "#0"},
-				"south": {"uv": [0, 0, 15, 15], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 15], "texture": "#0"},
 				"west": {"uv": [15, 0, 16, 15], "texture": "#0"},
-				"up": {"uv": [0, 15, 15, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 15, 1], "texture": "#0"}
+				"up": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#0"}
 			}
 		},
 		{
@@ -25,12 +25,12 @@
 			"from": [0, 0, 14],
 			"to": [16, 1, 15],
 			"faces": {
-				"north": {"uv": [1, 15, 16, 16], "texture": "#0"},
+				"north": {"uv": [0, 15, 16, 16], "texture": "#0"},
 				"east": {"uv": [1, 15, 2, 16], "texture": "#0"},
-				"south": {"uv": [0, 15, 15, 16], "texture": "#0"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#0"},
 				"west": {"uv": [14, 15, 15, 16], "texture": "#0"},
-				"up": {"uv": [0, 14, 15, 15], "texture": "#0"},
-				"down": {"uv": [0, 1, 15, 2], "texture": "#0"}
+				"up": {"uv": [0, 14, 16, 15], "texture": "#0"},
+				"down": {"uv": [0, 1, 16, 2], "texture": "#0"}
 			}
 		}
 	],
