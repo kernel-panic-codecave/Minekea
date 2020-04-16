@@ -63,6 +63,19 @@ public class BlockKitchenMicrowave extends Block implements ITileEntityProvider
 	public void initModel()
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileKitchenMicrowave.class, new TESRKitchenMicrowave());
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+	{
+		return state.withProperty(Properties.StaticProperty, false);
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state)
+	{
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
@@ -105,7 +118,9 @@ public class BlockKitchenMicrowave extends Block implements ITileEntityProvider
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, FACING);
+		return new ExtendedBlockState(this, new IProperty[]
+		{ Properties.StaticProperty, FACING }, new IUnlistedProperty[]
+		{ Properties.AnimationProperty });
 	}
 	
 	@Override

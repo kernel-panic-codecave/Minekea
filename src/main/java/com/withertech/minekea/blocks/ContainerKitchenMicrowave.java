@@ -127,6 +127,7 @@ public class ContainerKitchenMicrowave extends Container
 				}
 			}
 		}
+		te.setStack();
 	}
 	
 	@Override

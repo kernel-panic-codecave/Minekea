@@ -10,8 +10,10 @@ import com.withertech.minekea.Minekea;
 import com.withertech.minekea.ModBlocks;
 import com.withertech.minekea.util.EnergyStorageUtil;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -36,6 +38,8 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 	public static final int OUTPUT_SLOTS = 1;
 	public static final int SIZE = INPUT_SLOTS + OUTPUT_SLOTS;
 	
+	private ItemStack stack = ItemStack.EMPTY;
+
 	public static final int MAX_PROGRESS = 40;
 	
 	private int progress = 0;
@@ -61,6 +65,31 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 			{
 				startSmelt();
 			}
+		}
+		if (world != null && world.isRemote)
+		{
+			if (player.openContainer instanceof ContainerKitchenMicrowave && asm.currentState().equals("closed"))
+			{
+				asm.transition("opening");
+				
+			} else if (!(player.openContainer instanceof ContainerKitchenMicrowave) && asm.currentState().equals("open"))
+			{
+				asm.transition("closing");
+			}
+		}
+	}
+	
+	@Nullable
+	private final IAnimationStateMachine asm;
+	
+	public TileKitchenMicrowave()
+	{
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+		{
+			asm = Minekea.proxy.load(new ResourceLocation(Minekea.MODID, "asms/block/blockkitchenmicrowave.json"), ImmutableMap.of());
+		} else
+		{
+			asm = null;
 		}
 	}
 	
@@ -109,6 +138,37 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 		}
 	}
 	
+	public ItemStack getStack()
+	{
+		return stack;
+	}
+	
+	public void setStack()
+	{
+		if (world.isRemote)
+		{
+			if (!inputHandler.getStackInSlot(0).isEmpty())
+			{
+				this.stack = inputHandler.getStackInSlot(0);
+			} else if (!outputHandler.getStackInSlot(0).isEmpty())
+			{
+				this.stack = outputHandler.getStackInSlot(0);
+			} else
+			{
+				this.stack = ItemStack.EMPTY;
+			}
+			markDirty();
+			if (world != null)
+			{
+				IBlockState state = world.getBlockState(getPos());
+				world.notifyBlockUpdate(getPos(), state, state, 3);
+			}
+		}
+	}
+	
+
+	
+	
 	public int getProgress()
 	{
 		return progress;
@@ -144,6 +204,12 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 			// We need to tell the tile entity that something has changed so
 			// that the chest contents is persisted
 			TileKitchenMicrowave.this.markDirty();
+			setStack();
+			if (world != null)
+			{
+				IBlockState state = world.getBlockState(getPos());
+				world.notifyBlockUpdate(getPos(), state, state, 3);
+			}
 		}
 	};
 	
@@ -161,6 +227,12 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 			// We need to tell the tile entity that something has changed so
 			// that the chest contents is persisted
 			TileKitchenMicrowave.this.markDirty();
+			setStack();
+			if (world != null)
+			{
+				IBlockState state = world.getBlockState(getPos());
+				world.notifyBlockUpdate(getPos(), state, state, 3);
+			}
 		}
 	};
 	
@@ -182,6 +254,10 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 		{
 			outputHandler.deserializeNBT((NBTTagCompound) compound.getTag("itemsOut"));
 		}
+		if (compound.hasKey("stack"))
+		{
+			stack.deserializeNBT((NBTTagCompound) compound.getTag("stack"));
+		}
 		progress = compound.getInteger("progress");
 	}
 	
@@ -191,6 +267,7 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 		super.writeToNBT(compound);
 		compound.setTag("itemsIn", inputHandler.serializeNBT());
 		compound.setTag("itemsOut", outputHandler.serializeNBT());
+		compound.setTag("stack", stack.serializeNBT());
 		compound.setInteger("progress", progress);
 		return compound;
 	}
@@ -205,6 +282,10 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 	{
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			return true;
+		}
+		if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
 		{
 			return true;
 		}
@@ -227,6 +308,10 @@ public class TileKitchenMicrowave extends TileEntity implements ITickable
 				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(outputHandler);
 			}
 			
+		}
+		if (capability == CapabilityAnimation.ANIMATION_CAPABILITY)
+		{
+			return CapabilityAnimation.ANIMATION_CAPABILITY.cast(asm);
 		}
 		return super.getCapability(capability, facing);
 	}

@@ -1,0 +1,24 @@
+{
+    "parameters": {
+        "cycle": ["/", 1.0]
+    },
+    "clips": {
+        "opening": ["apply", "minekea:block/blockkitchenmicrowave@opening", "#cycle"],
+        "closing": ["apply", "minekea:block/blockkitchenmicrowave@closing", "#cycle"],
+        "open": ["apply", "minekea:block/blockkitchenmicrowave@open", "#cycle"],
+        "closed": ["apply", "minekea:block/blockkitchenmicrowave@closed", "#cycle"]
+    },
+    "states": [
+        "opening",
+        "closing",
+        "open",
+        "closed"
+    ],
+    "transitions": {
+        "open": "closing",
+        "closing": "closed",
+        "closed": "opening",
+        "opening": "open"
+    },
+    "start_state": "closed"
+}
